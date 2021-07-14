@@ -2,7 +2,7 @@
   "name": "discord-slash-client",
   "version": "0.1.0",
   "description": "A client for managing Discord slash commands",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
