@@ -1,19 +1,32 @@
 declare module "discord-slash-client" {
     type Snowflake = String;
 
-    class CommandOptionChoice {
-        public name: String;
-        public value: String | Number;
-    }
+    type Authorization = {
+        bearerToken?: String,
+        botToken?: String,
+    };
 
-    class CommandOption {
-        public type: Number;
-        public name: String;
-        public description: String;
-        public required?: Boolean;
-        public choices?: Array<CommandOptionChoice>;
-        public options?: Array<CommandOption>;
-    }
+    type CommandOptionChoice = {
+        name: String;
+        value: String | Number;
+    };
+
+    type CommandOption = {
+        type: Number;
+        name: String;
+        description: String;
+        required?: Boolean;
+        choices?: Array<CommandOptionChoice>;
+        options?: Array<CommandOption>;
+    };
+
+    type CommandData = {
+        name: String;
+        description: String;
+        guildID?: Snowflake;
+        options?: Array<CommandOption>;
+        defaultPermission?: Boolean;
+    };
 
     class Command {
         public id: Snowflake;
@@ -28,21 +41,13 @@ declare module "discord-slash-client" {
         public destroy(): Promise<void>;
     }
 
-    class CommandData {
-        public name: String;
-        public description: String;
-        public guildID?: Snowflake;
-        public options?: Array<CommandOption>;
-        public defaultPermission?: Boolean;
-    }
-
     class DiscordSlashClient {
         public cache: Map<Snowflake, Command>;
 
         protected appID: Snowflake;
         protected authorization: String;
 
-        constructor(appID: Snowflake, authorization: String);
+        constructor(appID: Snowflake, authorization: Authorization);
 
         public sync(force?: Boolean): Promise<void>;
         public create(data: CommandData): Promise<Command>;
