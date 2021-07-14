@@ -1,6 +1,8 @@
 declare module "discord-slash-client" {
     type Snowflake = String;
 
+    type CommandCache = Map<Snowflake, Command>;
+
     type Authorization = {
         bearerToken?: String,
         botToken?: String,
@@ -42,7 +44,8 @@ declare module "discord-slash-client" {
     }
 
     class DiscordSlashClient {
-        public cache: Map<Snowflake, Command>;
+        public globalCache: CommandCache;
+        public guildCache: Map<Snowflake, CommandCache>;
 
         protected appID: Snowflake;
         protected authorization: String;
