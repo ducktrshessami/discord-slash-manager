@@ -1,0 +1,19 @@
+{
+  "name": "discord-slash-client",
+  "version": "0.1.0",
+  "description": "A client for managing Discord slash commands",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ducktrshessami/discord-slash-client.git"
+  },
+  "author": "ducktrshessami",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ducktrshessami/discord-slash-client/issues"
+  },
+  "homepage": "https://github.com/ducktrshessami/discord-slash-client#readme"
+}
