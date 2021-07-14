@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ducktrshessami/discord-slash-client/issues"
   },
-  "homepage": "https://github.com/ducktrshessami/discord-slash-client#readme"
+  "homepage": "https://github.com/ducktrshessami/discord-slash-client#readme",
+  "dependencies": {
+    "phin": "^3.6.0"
+  }
 }
