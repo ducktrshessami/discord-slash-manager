@@ -42,7 +42,7 @@ declare module "discord-slash-client" {
 
         private typeValue: Number;
 
-        public toString(): String;
+        protected _toData(): String;
     };
 
     class Command {
@@ -71,6 +71,8 @@ declare module "discord-slash-client" {
         public fetchAll(guildID?: Snowflake): Promise<Array<Command>>;
         public update(data: CommandData, id: Snowflake, guildID?: Snowflake): Promise<Command>;
         public destroy(id: Snowflake, guildID?: Snowflake): Promise<void>;
+
+        private resolveGuildCache(guildID: Snowflake): CommandCache;
     }
 
     export = DiscordSlashClient;
