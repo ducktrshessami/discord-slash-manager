@@ -1,4 +1,4 @@
-declare module "discord-slash-client" {
+declare module "discord-slash-manager" {
     type Snowflake = String;
 
     type CommandCache = Map<Snowflake, Command>;
@@ -51,7 +51,7 @@ declare module "discord-slash-client" {
     };
 
     class Command {
-        public readonly client: DiscordSlashClient;
+        public readonly manager: DiscordSlashManager;
         public readonly id: Snowflake;
         public readonly guildID?: Snowflake;
         public name: String;
@@ -63,7 +63,7 @@ declare module "discord-slash-client" {
         public destroy(): Promise<void>;
     }
 
-    class DiscordSlashClient {
+    class DiscordSlashManager {
         public readonly appID: Snowflake;
         public readonly globalCache: CommandCache;
         public readonly guildCache: Map<Snowflake, CommandCache>;
@@ -81,5 +81,5 @@ declare module "discord-slash-client" {
         private resolveGuildCache(guildID: Snowflake): CommandCache;
     }
 
-    export = DiscordSlashClient;
+    export = DiscordSlashManager;
 }
