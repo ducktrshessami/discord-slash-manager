@@ -46,8 +46,8 @@ declare module "discord-slash-client" {
     };
 
     class Command {
+        public client: DiscordSlashClient;
         public id: Snowflake;
-        public appID: Snowflake;
         public name: String;
         public description: String;
         public options: Array<CommandOption>;
