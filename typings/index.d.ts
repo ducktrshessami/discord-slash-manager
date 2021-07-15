@@ -51,23 +51,24 @@ declare module "discord-slash-client" {
     };
 
     class Command {
-        public client: DiscordSlashClient;
-        public id: Snowflake;
+        public readonly client: DiscordSlashClient;
+        public readonly id: Snowflake;
+        public readonly guildID?: Snowflake;
         public name: String;
         public description: String;
         public options: Array<CommandOption>;
         public defaultPermission: Boolean;
-        public guildID?: Snowflake;
 
         public update(data: CommandData): Promise<Command>;
         public destroy(): Promise<void>;
     }
 
     class DiscordSlashClient {
-        public appID: Snowflake;
-        public authorization: String;
-        public globalCache: CommandCache;
-        public guildCache: Map<Snowflake, CommandCache>;
+        public readonly appID: Snowflake;
+        public readonly globalCache: CommandCache;
+        public readonly guildCache: Map<Snowflake, CommandCache>;
+
+        private authorization: String;
 
         constructor(appID: Snowflake, authorization: Authorization);
 
