@@ -3,6 +3,17 @@ declare module "discord-slash-client" {
 
     type CommandCache = Map<Snowflake, Command>;
 
+    type CommandOptionType =
+        | "SUB_COMMAND"
+        | "SUB_COMMAND_GROUP"
+        | "STRING"
+        | "INTEGER"
+        | "BOOLEAN"
+        | "USER"
+        | "CHANNEL"
+        | "ROLE"
+        | "MENTIONABLE";
+
     type Authorization = {
         bearerToken?: String,
         botToken?: String,
@@ -13,15 +24,6 @@ declare module "discord-slash-client" {
         value: String | Number;
     };
 
-    type CommandOption = {
-        type: Number;
-        name: String;
-        description: String;
-        required?: Boolean;
-        choices?: Array<CommandOptionChoice>;
-        options?: Array<CommandOption>;
-    };
-
     type CommandData = {
         name: String;
         description: String;
@@ -30,34 +32,45 @@ declare module "discord-slash-client" {
         defaultPermission?: Boolean;
     };
 
+    class CommandOption {
+        public type: CommandOptionType;
+        public name: String;
+        public description: String;
+        public required: Boolean;
+        public choices: Array<CommandOptionChoice>;
+        public options: Array<CommandOption>;
+
+        private typeValue: Number;
+
+        public toString(): String;
+    };
+
     class Command {
         public id: Snowflake;
         public appID: Snowflake;
         public name: String;
         public description: String;
+        public options: Array<CommandOption>;
+        public defaultPermission: Boolean;
         public guildID?: Snowflake;
-        public options?: Array<CommandOption>;
-        public defaultPermission?: Boolean;
 
         public update(data: CommandData): Promise<Command>;
         public destroy(): Promise<void>;
     }
 
     class DiscordSlashClient {
+        public appID: Snowflake;
+        public authorization: String;
         public globalCache: CommandCache;
         public guildCache: Map<Snowflake, CommandCache>;
 
-        protected appID: Snowflake;
-        protected authorization: String;
-
         constructor(appID: Snowflake, authorization: Authorization);
 
-        public sync(force?: Boolean): Promise<void>;
         public create(data: CommandData): Promise<Command>;
         public fetch(id: Snowflake, guildID?: Snowflake): Promise<Command>;
         public fetchAll(guildID?: Snowflake): Promise<Array<Command>>;
         public update(data: CommandData, id: Snowflake, guildID?: Snowflake): Promise<Command>;
-        public destroy(id: Snowflake): Promise<void>;
+        public destroy(id: Snowflake, guildID?: Snowflake): Promise<void>;
     }
 
     export = DiscordSlashClient;
