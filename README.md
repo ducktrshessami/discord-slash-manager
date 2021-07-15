@@ -2,6 +2,10 @@
 
 A client for managing Discord slash commands
 
+Only handles API calls for command CRUD
+
+Boilerplate code to handle receiving interactions to be added in future
+
 # Usage
 
 ```js
@@ -26,4 +30,11 @@ manager.create({
 
 # Documentation
 
+## Table of Contents
 
+- Class: DiscordSlashManager
+- Class: Command
+
+## Class: DiscordSlashManager
+
+## Class: Command
