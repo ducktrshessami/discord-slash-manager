@@ -24,25 +24,30 @@ declare module "discord-slash-client" {
         value: String | Number;
     };
 
+    type CommandOption = {
+        type: CommandOptionType;
+        name: String;
+        description: String;
+        required: Boolean;
+        choices: Array<CommandOptionChoice>;
+        options: Array<CommandOption>;
+    };
+
+    type CommandOptionData = {
+        type: CommandOptionType;
+        name: String;
+        description: String;
+        required?: Boolean;
+        choices?: Array<CommandOptionChoice>;
+        options?: Array<CommandOptionData>;
+    };
+
     type CommandData = {
         name: String;
         description: String;
         guildID?: Snowflake;
-        options?: Array<CommandOption>;
+        options?: Array<CommandOptionData>;
         defaultPermission?: Boolean;
-    };
-
-    class CommandOption {
-        public type: CommandOptionType;
-        public name: String;
-        public description: String;
-        public required: Boolean;
-        public choices: Array<CommandOptionChoice>;
-        public options: Array<CommandOption>;
-
-        private typeValue: Number;
-
-        protected _toData(): String;
     };
 
     class Command {
