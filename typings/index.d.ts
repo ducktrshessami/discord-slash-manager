@@ -39,14 +39,14 @@ declare module "discord-slash-manager" {
         description: String;
         required?: Boolean;
         choices?: Array<CommandOptionChoice>;
-        options?: Array<CommandOptionData>;
+        options?: CommandOptionData | Array<CommandOptionData>;
     };
 
     type CommandData = {
         name: String;
         description: String;
         guildID?: Snowflake;
-        options?: Array<CommandOptionData>;
+        options?: CommandOptionData | Array<CommandOptionData>;
         defaultPermission?: Boolean;
     };
 
