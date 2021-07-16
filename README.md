@@ -1,17 +1,13 @@
-# discord-slash-manager
+# discord-slash
 
-A client for managing Discord slash commands
-
-Only handles API calls for command CRUD
-
-Boilerplate code to handle receiving interactions to be added in future
+Utils for handling Discord slash commands
 
 # Usage
 
 ```js
-const DiscordSlashManager = require("discord-slash-manager");
+const DiscordSlash = require("discord-slash");
 
-const manager = new DiscordSlashManager(process.env.DISCORD_ID, { botToken: process.env.DISCORD_TOKEN });
+const manager = new DiscordSlash.CommandManager(process.env.DISCORD_ID, { botToken: process.env.DISCORD_TOKEN });
 
 manager.create({
     name: "bonk",
@@ -31,10 +27,3 @@ manager.create({
 # Documentation
 
 ## Table of Contents
-
-- Class: DiscordSlashManager
-- Class: Command
-
-## Class: DiscordSlashManager
-
-## Class: Command
