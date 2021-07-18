@@ -63,7 +63,7 @@ declare module "discord-slash" {
         public destroy(): Promise<void>;
     }
 
-    export class CommandManager {
+    class CommandManager {
         public readonly appID: Snowflake;
         public readonly globalCache: CommandCache;
         public readonly guildCache: Map<Snowflake, CommandCache>;
@@ -80,4 +80,6 @@ declare module "discord-slash" {
 
         private resolveGuildCache(guildID: Snowflake): CommandCache;
     }
+
+    export = CommandManager;
 }
