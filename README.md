@@ -1,6 +1,6 @@
-# discord-slash
+# discord-slash-manager
 
-Utils for handling Discord slash commands
+A controller for managing Discord slash commands
 
 # Usage
 
