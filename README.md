@@ -5,9 +5,9 @@ A controller for managing Discord slash commands
 # Usage
 
 ```js
-const DiscordSlash = require("discord-slash");
+const SlashManager = require("discord-slash-manager");
 
-const manager = new DiscordSlash.CommandManager(process.env.DISCORD_ID, { botToken: process.env.DISCORD_TOKEN });
+const manager = new SlashManager(process.env.DISCORD_ID, { botToken: process.env.DISCORD_TOKEN });
 
 manager.create({
     name: "bonk",
