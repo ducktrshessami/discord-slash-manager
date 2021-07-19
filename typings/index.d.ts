@@ -62,14 +62,15 @@ declare module "discord-slash" {
     }
 
     class CommandCache {
+        public readonly manager: SlashManager;
         public readonly size: Number;
         public readonly guildID?: Snowflake;
 
         public array(): Array<Command>;
         public get(id: Snowflake): Command;
         public has(id: Snowflake): Boolean;
-        public fetch(id?: Snowflake): Promise<CommandCache>;
-        public destroyAll(): Promise<void>;
+        public fetch(id?: Snowflake): Promise<Command | CommandCache>;
+        public destroy(id?: Snowflake): Promise<void>;
 
         protected _set(id: Snowflake, command: Command): CommandCache;
         protected _delete(id: Snowflake): Boolean;
