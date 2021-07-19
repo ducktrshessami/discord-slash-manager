@@ -1,4 +1,4 @@
-declare module "discord-slash" {
+declare module "discord-slash-manager" {
     type Snowflake = String;
 
     type CommandOptionType =
