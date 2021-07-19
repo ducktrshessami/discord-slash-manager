@@ -1,8 +1,6 @@
 declare module "discord-slash" {
     type Snowflake = String;
 
-    type CommandCache = Map<Snowflake, Command>;
-
     type CommandOptionType =
         | "SUB_COMMAND"
         | "SUB_COMMAND_GROUP"
@@ -63,6 +61,19 @@ declare module "discord-slash" {
         public destroy(): Promise<void>;
     }
 
+    class CommandCache {
+        public readonly guildID?: Snowflake;
+
+        public array(): Array<Command>;
+        public get(id: Snowflake): Command;
+        public has(id: Snowflake): Boolean;
+        public fetch(id?: Snowflake): Promise<CommandCache>;
+        public destroyAll(): Promise<void>;
+
+        protected _set(id: Snowflake, command: Command): CommandCache;
+        protected _delete(id: Snowflake): Boolean;
+    }
+
     class SlashManager {
         public readonly appID: Snowflake;
         public readonly globalCache: CommandCache;
@@ -74,7 +85,7 @@ declare module "discord-slash" {
 
         public create(data: CommandData): Promise<Command>;
         public fetch(id: Snowflake, guildID?: Snowflake): Promise<Command>;
-        public fetchAll(guildID?: Snowflake): Promise<Array<Command>>;
+        public fetchAll(guildID?: Snowflake): Promise<CommandCache>;
         public update(data: CommandData, id: Snowflake, guildID?: Snowflake): Promise<Command>;
         public destroy(id: Snowflake, guildID?: Snowflake): Promise<void>;
 
