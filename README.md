@@ -2,6 +2,8 @@
 
 A controller for managing Discord slash commands
 
+See also: [discord-interaction](https://github.com/ducktrshessami/discord-interaction)
+
 # Usage
 
 ```js
