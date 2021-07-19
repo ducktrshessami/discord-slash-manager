@@ -49,6 +49,14 @@ manager.create({
     - [Command.update(data)]()
     - [Command.destroy()]()
 3. [Class: CommandCache]()
+    - [CommandCache.manager]()
+    - [CommandCache.size]()
+    - [CommandCache.guildID]()
+    - [CommandCache.array()]()
+    - [CommandCache.get(id)]()
+    - [CommandCache.has(id)]()
+    - [CommandCache.fetch([id])]()
+    - [CommandCache.destroy([id])]()
 
 ## Class: SlashManager
 
@@ -91,3 +99,19 @@ manager.create({
 ### Command.destroy()
 
 ## Class: CommandCache
+
+### CommandCache.manager
+
+### CommandCache.size
+
+### CommandCache.guildID
+
+### CommandCache.array()
+
+### CommandCache.get(id)
+
+### CommandCache.has(id)
+
+### CommandCache.fetch([id])
+
+### CommandCache.destroy([id])
