@@ -62,6 +62,7 @@ declare module "discord-slash" {
     }
 
     class CommandCache {
+        public readonly size: Number;
         public readonly guildID?: Snowflake;
 
         public array(): Array<Command>;
