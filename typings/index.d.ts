@@ -1,8 +1,6 @@
 declare module "discord-slash-manager" {
     type Snowflake = String;
 
-    type CommandCache = Map<Snowflake, Command>;
-
     type CommandOptionType =
         | "SUB_COMMAND"
         | "SUB_COMMAND_GROUP"
@@ -51,7 +49,7 @@ declare module "discord-slash-manager" {
     };
 
     class Command {
-        public readonly manager: DiscordSlashManager;
+        public readonly manager: SlashManager;
         public readonly id: Snowflake;
         public readonly guildID?: Snowflake;
         public name: String;
@@ -63,7 +61,22 @@ declare module "discord-slash-manager" {
         public destroy(): Promise<void>;
     }
 
-    class DiscordSlashManager {
+    class CommandCache {
+        public readonly manager: SlashManager;
+        public readonly size: Number;
+        public readonly guildID?: Snowflake;
+
+        public array(): Array<Command>;
+        public get(id: Snowflake): Command;
+        public has(id: Snowflake): Boolean;
+        public fetch(id?: Snowflake): Promise<Command | CommandCache>;
+        public destroy(id?: Snowflake): Promise<void>;
+
+        protected _set(id: Snowflake, command: Command): CommandCache;
+        protected _delete(id: Snowflake): Boolean;
+    }
+
+    class SlashManager {
         public readonly appID: Snowflake;
         public readonly globalCache: CommandCache;
         public readonly guildCache: Map<Snowflake, CommandCache>;
@@ -74,12 +87,12 @@ declare module "discord-slash-manager" {
 
         public create(data: CommandData): Promise<Command>;
         public fetch(id: Snowflake, guildID?: Snowflake): Promise<Command>;
-        public fetchAll(guildID?: Snowflake): Promise<Array<Command>>;
+        public fetchAll(guildID?: Snowflake): Promise<CommandCache>;
         public update(data: CommandData, id: Snowflake, guildID?: Snowflake): Promise<Command>;
         public destroy(id: Snowflake, guildID?: Snowflake): Promise<void>;
 
         private resolveGuildCache(guildID: Snowflake): CommandCache;
     }
 
-    export = DiscordSlashManager;
+    export = SlashManager;
 }
