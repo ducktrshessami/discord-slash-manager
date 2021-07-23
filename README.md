@@ -26,4 +26,4 @@ manager.create({
     .catch(console.error);
 ```
 
-[Documentation](https://github.com/ducktrshessami/discord-slash-manager/wiki)
+[**Documentation**](https://github.com/ducktrshessami/discord-slash-manager/wiki)
