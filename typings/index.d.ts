@@ -1,3 +1,5 @@
+import { Collection } from "@discordjs/collection";
+
 declare module "discord-slash-manager" {
     type Snowflake = String;
 
@@ -61,19 +63,12 @@ declare module "discord-slash-manager" {
         public destroy(): Promise<void>;
     }
 
-    class CommandCache {
+    class CommandCache extends Collection<Snowflake, Command> {
         public readonly manager: SlashManager;
-        public readonly size: Number;
         public readonly guildID?: Snowflake;
 
-        public array(): Array<Command>;
-        public get(id: Snowflake): Command;
-        public has(id: Snowflake): Boolean;
         public fetch(id?: Snowflake): Promise<Command | CommandCache>;
         public destroy(id?: Snowflake): Promise<void>;
-
-        protected _set(id: Snowflake, command: Command): CommandCache;
-        protected _delete(id: Snowflake): Boolean;
     }
 
     class SlashManager {
